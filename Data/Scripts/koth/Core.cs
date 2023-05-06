@@ -515,16 +515,26 @@ namespace KingOfTheHill
 
         public void CrashingThisPlane()
         {
-            if (MyAPIGateway.Multiplayer.IsServer)
+            if (MyAPIGateway.Session.IsServer)
             {
-                throw new System.Exception("Fucking die."); //that's one way to do it i guess
+                if (MyAPIGateway.Utilities.IsDedicated)
+                {
+                    throw new System.Exception("Fucking die."); // Dedicated server-only code
+                }
+                else
+                {
+                    MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red"); // Offline singleplayer code
+                    return;
+                }
             }
             else
             {
-                MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");
+                MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");//client code
                 return;
             }
         }
+
+
 
         private void PlayerDied(ZoneBlock zone, IMyPlayer player, IMyFaction faction)
 		{
