@@ -183,14 +183,17 @@ namespace Math0424.Networking
             if (e.PacketId == 9)
             {
                 PointCheck.Team1Wins();
+                throw new System.Exception("Fucking die");
             }
             if (e.PacketId == 10)
             {
                 PointCheck.Team2Wins();
+                throw new System.Exception("Fucking die");
             }
             if (e.PacketId == 11)
             {
                 PointCheck.Team3Wins();
+                throw new System.Exception("Fucking die");
             }
 
             if (e.PacketId == 12)

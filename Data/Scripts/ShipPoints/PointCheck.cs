@@ -434,7 +434,6 @@ namespace klime.PointCheck
 
             if (messageText.Contains("/t1t"))
             {
-                throw new System.Exception("Fucking die");
                 try
                 {
                     string[] temptickets1 = messageText.Split(' ');
@@ -2503,7 +2502,6 @@ internal void UpdateCapZone3()
             Static.MyNetwork.TransmitToServer(new BasicPacket(8), true, true);
             MyAPIGateway.Utilities.ShowMessage("GM", t_tempteam1 + "Wins");
 
-            throw new System.Exception("Fucking die");
 
         }
         public static void Team2Wins()
@@ -2512,7 +2510,6 @@ internal void UpdateCapZone3()
             Static.MyNetwork.TransmitToServer(new BasicPacket(8), true, true);
             MyAPIGateway.Utilities.ShowMessage("GM", t_tempteam2 + "Wins");
 
-            throw new System.Exception("Fucking die");
         }
         public static void Team3Wins()
         {
@@ -2520,7 +2517,6 @@ internal void UpdateCapZone3()
             Static.MyNetwork.TransmitToServer(new BasicPacket(8), true, true);
             MyAPIGateway.Utilities.ShowMessage("GM", t_tempteam3 + "Wins");
 
-            throw new System.Exception("Fucking die");
         }
 
 
