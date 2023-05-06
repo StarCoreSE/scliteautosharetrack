@@ -540,6 +540,7 @@ namespace KingOfTheHill
         {
 
           MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");//why doesn't this show on the client?
+          MyAPIGateway.Utilities.ShowMessage("Server", "A team has won! Now restarting the server.");
 
         }
 
