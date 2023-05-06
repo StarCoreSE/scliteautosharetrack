@@ -525,13 +525,13 @@ namespace KingOfTheHill
                 }
                 else
                 {
-                    MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red"); // Offline singleplayer code works...
+                    MyVisualScriptLogicProvider.ShowNotificationToAll("A team has won! Now restarting the server.", 5000, "Red"); // Offline singleplayer code works...
                     return;
                 }
             }
             else
             {
-                MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");//why doesn't this show on the client?
+                MyVisualScriptLogicProvider.ShowNotificationToAll("A team has won! Now restarting the server.", 5000, "Red");//why doesn't this show on the client?
                 return;
             }
         }
@@ -539,7 +539,7 @@ namespace KingOfTheHill
         public void CrashingThisPlaneTheMessageIHaveToSendToTheClientSpecificallyFuckingKeen()
         {
 
-          MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");//why doesn't this show on the client?
+            MyVisualScriptLogicProvider.ShowNotificationToAll("A team has won! Now restarting the server.", 5000, "Red");//why doesn't this show on the client?
           MyAPIGateway.Utilities.ShowMessage("Server", "A team has won! Now restarting the server.");
 
         }
