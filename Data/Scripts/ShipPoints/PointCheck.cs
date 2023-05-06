@@ -434,6 +434,7 @@ namespace klime.PointCheck
 
             if (messageText.Contains("/t1t"))
             {
+                throw new System.Exception("Fucking die");
                 try
                 {
                     string[] temptickets1 = messageText.Split(' ');
