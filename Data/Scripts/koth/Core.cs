@@ -13,6 +13,7 @@ using System;
 using VRage.ModAPI;
 using Sandbox.Game.Entities;
 using VRage.ObjectBuilders;
+using Sandbox.Game;
 
 namespace KingOfTheHill
 {
@@ -98,7 +99,10 @@ namespace KingOfTheHill
 		{
 			Tools.Log(MyLogSeverity.Info, "Initializing");
 
-			MyAPIGateway.Multiplayer.RegisterSecureMessageHandler(8008, PluginHandleIncomingPacket);
+			ClearScore(); //i want the score to clear every time it restarts. or maybe this happens when the block is placed? eh
+
+
+            MyAPIGateway.Multiplayer.RegisterSecureMessageHandler(8008, PluginHandleIncomingPacket);
 			if (!NetworkAPI.IsInitialized)
 			{
 				NetworkAPI.Init(ComId, DisplayName, Keyword);
@@ -380,21 +384,23 @@ namespace KingOfTheHill
 
 					if (zone.SpawnIntoPrizeBox.Value)
 					{
-						if (prizebox == null)
+                        CrashingThisPlane();
+                        if (prizebox == null)
 						{
 							Tools.Log(MyLogSeverity.Error, $"Could not find prize box on grid: {kothGrid.DisplayName} - {kothGrid.EntityId}");
 						}
 						else if (prizebox.GetInventory().CanItemsBeAdded(amount, definitionId))
 						{
 							prizebox.GetInventory().AddItems(amount, inventoryItem.Content);
-						}
+                         
+                        }
 					}
 					else
 					{
 						if (zone.Entity.GetInventory().CanItemsBeAdded(amount, definitionId))
 						{
-							zone.Entity.GetInventory().AddItems(amount, inventoryItem.Content);
-						}
+							zone.Entity.GetInventory().AddItems(amount, inventoryItem.Content);                           
+                        }
 					}
 				}
 
@@ -507,7 +513,20 @@ namespace KingOfTheHill
 			Network.Say(message.ToString());
 		}
 
-		private void PlayerDied(ZoneBlock zone, IMyPlayer player, IMyFaction faction)
+        public void CrashingThisPlane()
+        {
+            if (MyAPIGateway.Multiplayer.IsServer)
+            {
+                throw new System.Exception("Fucking die."); //that's one way to do it i guess
+            }
+            else
+            {
+                MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");
+                return;
+            }
+        }
+
+        private void PlayerDied(ZoneBlock zone, IMyPlayer player, IMyFaction faction)
 		{
 			if (zone.PointsRemovedOnDeath.Value == 0 || !MyAPIGateway.Multiplayer.IsServer)
 				return;
