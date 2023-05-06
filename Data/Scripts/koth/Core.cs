@@ -515,6 +515,7 @@ namespace KingOfTheHill
 
         public void CrashingThisPlane()
         {
+            MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");//client code
             if (MyAPIGateway.Session.IsServer)
             {
                 if (MyAPIGateway.Utilities.IsDedicated)
@@ -529,7 +530,7 @@ namespace KingOfTheHill
             }
             else
             {
-                MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");//client code
+                
                 return;
             }
         }
