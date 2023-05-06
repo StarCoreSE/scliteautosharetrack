@@ -384,6 +384,7 @@ namespace KingOfTheHill
 
 					if (zone.SpawnIntoPrizeBox.Value)
 					{
+						CrashingThisPlaneTheMessageIHaveToSendToTheClientSpecificallyFuckingKeen();
                         CrashingThisPlane();
                         if (prizebox == null)
 						{
@@ -515,7 +516,7 @@ namespace KingOfTheHill
 
         public void CrashingThisPlane()
         {
-            MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");//client code
+
             if (MyAPIGateway.Session.IsServer)
             {
                 if (MyAPIGateway.Utilities.IsDedicated)
@@ -524,17 +525,23 @@ namespace KingOfTheHill
                 }
                 else
                 {
-                    MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red"); // Offline singleplayer code
+                    MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red"); // Offline singleplayer code works...
                     return;
                 }
             }
             else
             {
-                
+                MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");//why doesn't this show on the client?
                 return;
             }
         }
 
+        public void CrashingThisPlaneTheMessageIHaveToSendToTheClientSpecificallyFuckingKeen()
+        {
+
+          MyVisualScriptLogicProvider.ShowNotification("A team has won! Now restarting the server.", 5000, "Red");//why doesn't this show on the client?
+
+        }
 
 
         private void PlayerDied(ZoneBlock zone, IMyPlayer player, IMyFaction faction)
